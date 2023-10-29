@@ -1,0 +1,30 @@
+const axios = require('axios');
+
+// Gantilah dengan URL dan endpoint API resmi LinkAja
+const apiUrl = 'https://api.linkaja.id/api/saldo';
+
+// Gantilah dengan token autentikasi yang diperlukan
+const authToken = 'TOKEN_ANDA';
+
+// Gantilah dengan ID pengguna yang sesuai
+const userId = 'ID_PENGGUNA';
+
+// Konfigurasi permintaan HTTP
+const config = {
+  headers: {
+    'Authorization': `Bearer ${authToken}`,
+  },
+  params: {
+    user_id: userId,
+  },
+};
+
+// Lakukan permintaan GET ke API LinkAja
+axios.get(apiUrl, config)
+  .then((response) => {
+    const saldo = response.data.saldo;
+    console.log(`Saldo LinkAja pengguna: ${saldo}`);
+  })
+  .catch((error) => {
+    console.error('Gagal mengambil saldo LinkAja:', error);
+  });
